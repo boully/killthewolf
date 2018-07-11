@@ -1,16 +1,9 @@
 <!--pages/game/game.wxml-->
-<view class="page-section">
-  <view class="weui-cells__title">实时获取输入值：{{inputValue}}</view>
-  <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell weui-cell_input">
-      <input class="weui-input" maxlength="10" bindinput="bindKeyInput" placeholder="输入同步到view中" />
-    </view>
-  </view>
-</view>
+
 <view class="card_container">
   <view class="card_row">
     <view class="card blue" wx:for="{{array}}">
-      {{index}}
+      {{item}}
     </view>
   </view>
 </view>

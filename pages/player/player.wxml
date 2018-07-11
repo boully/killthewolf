@@ -13,4 +13,7 @@
       <view><button class='user_button' bindtap='delete' data-index="{{index}}">X</button></view>
     </view>
   </view>
+  <view class='navigate_area'>
+    <button bindtap="navigate">开始</button>
+  </view>
 </form>

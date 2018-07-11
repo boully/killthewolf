@@ -80,5 +80,12 @@ Page({
     this.setData({
       user_array: user_array_local,
     })
+  },
+
+  navigate: function(e) {
+    console.log('-------------click', e);
+    wx.navigateTo({
+      url: '../../pages/game/game?user_list=' + JSON.stringify(this.data.user_array),
+    })
   }
 })

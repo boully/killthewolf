@@ -22,10 +22,6 @@
         "text": "日志"
       },
       {
-        "pagePath": "pages/game/game",
-        "text": "游戏"
-      },
-      {
         "pagePath": "pages/player/player",
         "text": "玩家"
       }
