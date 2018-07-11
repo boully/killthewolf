@@ -1,0 +1,23 @@
+/* pages/player/player.wxss */
+button {
+  width: 40%;
+}
+.button_area {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 50rpx;
+}
+.input_area {
+  padding: 20rpx 50rpx;
+}
+.user_area {
+  padding: 20rpx 100rpx;
+}
+.one_user_area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user_button {
+  width: auto;
+}

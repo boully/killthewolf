@@ -1,0 +1,38 @@
+/* pages/game/game.wxss */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200rpx;
+  height: 200rpx;
+  margin: 20rpx;
+}
+
+.red {
+  background: lightcoral;
+}
+
+.green {
+  background: lightgreen;
+}
+
+.blue {
+  background: lightblue;
+}
+
+.card_row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-height: 400rpx;
+}
+
+.card_container {
+  position: fixed;
+  height: 90%;
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  justify-content: space-around
+} 
+
