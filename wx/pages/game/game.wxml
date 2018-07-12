@@ -1,0 +1,9 @@
+<!--pages/game/game.wxml-->
+
+<view class="card_container">
+  <view class="card_row">
+    <view class="card blue" wx:for="{{array}}">
+      {{item}}
+    </view>
+  </view>
+</view>
