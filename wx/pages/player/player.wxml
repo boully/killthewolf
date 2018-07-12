@@ -2,7 +2,7 @@
 <form bindsubmit='add'>
   <view class='input_area'>
     <view>添加一个玩家：</view>
-    <input name="input" placeholder="please input here" />
+    <input name="input" placeholder="please input here" value="{{inputValue}}"/>
   </view>
   <view class='button_area'>
     <button formType="submit">添加</button>

@@ -1,21 +1,39 @@
-// pages/game/game.js
+// pages/role/role.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    array: ["狼人", 2, 3, 4],
-    inputValue: ''
+    array: getApp().globalData.array,
+    roles: [],
+  },
+
+  select: function(e) {
+    var local_array = this.data.array;
+    var local_roles = new Set(this.data.roles);
+    local_array[e.currentTarget.dataset.id].color = "green";
+    local_roles.add(e.currentTarget.dataset.id)
+    console.log(e)
+    console.log(local_roles)
+    this.setData({
+      array: local_array,
+      roles: [...local_roles]
+    })
+  },
+
+  navigate: function(e) {
+    console.log(e)
+    wx.navigateTo({
+      url: '../../pages/player/player?roles=' + JSON.stringify(this.data.roles),
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData ({
-      array: JSON.parse(options.user_list)
-    })
+  
   },
 
   /**
@@ -65,15 +83,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-
-  bindKeyInput: function (e) {
-    var list = this.data.array;
-    list.push(123);
-    this.setData({
-      inputValue: e.detail.value,
-      array: list
-    })
   }
-
 })

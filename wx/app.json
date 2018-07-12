@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/role/role",
     "pages/player/player",
     "pages/game/game",
     "pages/index/index",
@@ -20,10 +21,6 @@
       {
         "pagePath": "pages/logs/logs",
         "text": "日志"
-      },
-      {
-        "pagePath": "pages/player/player",
-        "text": "玩家"
       }
     ]
   }

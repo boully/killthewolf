@@ -1,0 +1,10 @@
+<!--pages/role/role.wxml-->
+<view class="card_row">选择角色</view>
+<view class="card_row">
+  <view class="card {{item.color}}" wx:for="{{array}}" wx:key="{{item.id}}" data-id="{{index}}" bindtap='select'>
+    {{item.name}}
+  </view>
+</view>
+<view class='navigate_area'>
+  <button bindtap="navigate">开始</button>
+</view>

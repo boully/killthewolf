@@ -5,14 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user_array: ["aaaa", "bbbb", "cccc"]
+    user_array: ["aaaa", "bbbb", "cccc"],
+    inputValue: '',
+    num_player: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var array = [1, 2, 3, 4]
+    console.log(array.length)
+    console.log(options)
+    console.log(JSON.parse(options.roles).length)
+    this.setData ({
+      numPlayer: options.roles.length - 3
+    })
   },
 
   /**
@@ -70,6 +78,7 @@ Page({
     console.log(user_array_local);
     this.setData({
       user_array: user_array_local,
+      inputValue: ''
     })
   },
 
