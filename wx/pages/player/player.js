@@ -20,6 +20,9 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
+      roles: JSON.parse(options.roles),
+    })
+    this.setData({
       numPlayer: this.getNumPlayer()
     })
   },

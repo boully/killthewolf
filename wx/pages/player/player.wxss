@@ -1,6 +1,6 @@
 /* pages/player/player.wxss */
 button {
-  width: 40%;
+  width: 400rpx;
 }
 .button_area {
   display: flex;

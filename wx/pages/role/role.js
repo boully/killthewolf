@@ -14,8 +14,6 @@ Page({
     var local_roles = new Set(this.data.roles);
     local_array[e.currentTarget.dataset.id].color = "green";
     local_roles.add(e.currentTarget.dataset.id)
-    console.log(e)
-    console.log(local_roles)
     this.setData({
       array: local_array,
       roles: [...local_roles]
@@ -23,7 +21,6 @@ Page({
   },
 
   navigate: function(e) {
-    console.log(e)
     wx.navigateTo({
       url: '../../pages/player/player?roles=' + JSON.stringify(this.data.roles),
     })

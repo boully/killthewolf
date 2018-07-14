@@ -36,56 +36,56 @@ App({
   globalData: {
     userInfo: null,
     array: [{
+        id: 0,
+        name: "狼人",
+        color: "blue"
+      }, {
         id: 1,
         name: "狼人",
         color: "blue"
-      }, {
-        id: 2,
-        name: "狼人",
-        color: "blue"
       },
       {
-        id: 3,
+        id: 2,
         name: "爪牙",
         color: "blue"
       }, {
-        id: 4,
+        id: 3,
         name: "守卫",
         color: "blue"
       },
       {
-        id: 5,
+        id: 4,
         name: "守卫",
         color: "blue"
       }, {
-        id: 6,
+        id: 5,
         name: "预言家",
         color: "blue"
       },
       {
-        id: 7,
+        id: 6,
         name: "强盗",
         color: "blue"
       }, {
-        id: 8,
+        id: 7,
         name: "捣蛋鬼",
         color: "blue"
       },
       {
-        id: 9,
+        id: 8,
         name: "酒鬼",
         color: "blue"
       }, {
-        id: 10,
+        id: 9,
         name: "失眠者",
         color: "blue"
       },
       {
-        id: 11,
+        id: 10,
         name: "平民",
         color: "blue"
       }, {
-        id: 12,
+        id: 11,
         name: "平民",
         color: "blue"
       }
