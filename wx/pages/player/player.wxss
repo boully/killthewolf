@@ -10,7 +10,7 @@ button {
 .input_area {
   padding: 20rpx 50rpx;
 }
-.user_area {
+.players_area {
   width: 80%;
   margin: 5% 10%;
   display: flex;
@@ -18,14 +18,14 @@ button {
   flex-wrap: wrap;
   align-items: flex-start;
 }
-.one_user_area {
+.player_area {
   width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 3%;
 }
-.user_button {
+.player_button {
   width: auto;
   float: left;
 }
