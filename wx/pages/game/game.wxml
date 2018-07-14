@@ -1,9 +1,14 @@
 <!--pages/game/game.wxml-->
-
 <view class="card_container">
+  <view>每人轮流看自己的牌</view>
   <view class="card_row">
-    <view class="card blue" wx:for="{{array}}">
-      {{item}}
+    <view class="card blue" wx:for="{{player_cards}}" wx:key="{{item.key}}" data-id="{{index}}" data-type="player" bindtap="check">
+      {{item.showRole ? item.role : item.player}}
+    </view>
+  </view>
+  <view class="card_row">
+    <view class="card red" wx:for="{{left_cards}}" wx:key="{{item.key}}" data-id="{{index}}" data-type="left" bindtap="check">
+      {{item.player}}
     </view>
   </view>
 </view>

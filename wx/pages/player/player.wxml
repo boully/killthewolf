@@ -1,16 +1,16 @@
 <!--pages/player/player.wxml-->
 <form bindsubmit='add'>
   <view class='input_area'>
-    <view>添加一个玩家：</view>
+    <view>{{roles.length}}个角色, 再添加{{numPlayer}}个玩家：</view>
     <input name="input" placeholder="please input here" value="{{inputValue}}"/>
   </view>
   <view class='button_area'>
     <button formType="submit">添加</button>
   </view>
-  <view class='user_area'>
-    <view class='one_user_area' wx:for="{{user_array}}">
+  <view class='players_area'>
+    <view class='player_area' wx:for="{{players}}">
       <view>{{item}}</view>
-      <view><button class='user_button' bindtap='delete' data-index="{{index}}">X</button></view>
+      <view><button class='player_button' bindtap='delete' data-index="{{index}}">X</button></view>
     </view>
   </view>
   <view class='navigate_area'>
