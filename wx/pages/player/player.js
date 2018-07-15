@@ -5,14 +5,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user_array: ["aaaa", "bbbb", "cccc"]
+    players: ["a", "b", "c", "d", "e", "f"],
+    roles: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    numPlayer: 0,
+    inputValue: ""
+  },
+
+  getNumPlayer: function () {
+    return this.data.roles.length - 3 - this.data.players.length
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      roles: JSON.parse(options.roles),
+    })
+    this.setData({
+      numPlayer: this.getNumPlayer()
+    })
   },
 
   /**
@@ -65,27 +77,39 @@ Page({
   },
 
   add: function(e) {
-    var user_array_local = this.data.user_array;
-    user_array_local.push(e.detail.value.input);
-    console.log(user_array_local);
+    if (this.getNumPlayer() <= 0) {
+      return
+    }
+    var players_local = this.data.players;
+    players_local.push(e.detail.value.input);
+    console.log(players_local);
     this.setData({
-      user_array: user_array_local,
+      players: players_local,
+      numPlayer: this.getNumPlayer(),
+      inputValue: ""
     })
   },
 
   delete: function(e) {
-    var user_array_local = this.data.user_array;
-    user_array_local.splice(e.target.dataset.index, 1);
+    var players_local = this.data.players;
+    players_local.splice(e.target.dataset.index, 1);
     console.log(e);
     this.setData({
-      user_array: user_array_local,
+      players: players_local,
+      numPlayer: this.getNumPlayer(),
+      inputValue: ""
     })
   },
 
   navigate: function(e) {
     console.log('-------------click', e);
+    if (this.getNumPlayer() != 0) {
+      return
+    }
     wx.navigateTo({
-      url: '../../pages/game/game?user_list=' + JSON.stringify(this.data.user_array),
+      url: '../../pages/game/game?' +
+        'players=' + JSON.stringify(this.data.players) +
+        '&roles=' + JSON.stringify(this.data.roles),
     })
   }
 })

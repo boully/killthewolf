@@ -1,0 +1,27 @@
+/* pages/role/role.wxss */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:150rpx;
+  height: 150rpx;
+  margin-bottom: 30rpx;
+}
+.red {
+  background: lightcoral;
+}
+.green {
+  background: lightgreen;
+}
+.blue {
+  background: lightblue;
+}
+.card_row {
+  margin: 0 20rpx 20rpx;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.navigate_area {
+  display: flex;
+}
