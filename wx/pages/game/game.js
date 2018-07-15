@@ -52,7 +52,7 @@ Page({
     if (this.data.stage == 1) {  // 守卫点亮
       var local_player_cards = this.data.player_cards
       for (var i = 0; i < local_player_cards.length; ++i) {
-        if (local_player_cards[i].role == 2 || local_player_cards[i].role == 3)
+        if (local_player_cards[i].role_id == 2 || local_player_cards[i].role_id == 3)
           local_player_cards[i].color = 'green'
       }
       this.setData({
@@ -76,7 +76,7 @@ Page({
     if (this.data.stage == 3) {  // 狼人点亮
       var local_player_cards = this.data.player_cards
       for (var i = 0; i < local_player_cards.length; ++i) {
-        if (local_player_cards[i].role == 0 || local_player_cards[i].role == 1)
+        if (local_player_cards[i].role_id == 0 || local_player_cards[i].role_id == 1)
           local_player_cards[i].color = 'green'
       }
       this.setData({
@@ -144,7 +144,8 @@ Page({
       local_player_cards.push({
         key: i,
         player: local_players[i],
-        role: local_roles[i],
+        role_id: local_roles[i],
+        role_name: getApp().globalData.array[local_roles[i]].name,
         showRole: false,
         color: 'blue'
       })
@@ -153,7 +154,8 @@ Page({
       local_left_cards.push({
         key: i,
         player: "底牌" + i,
-        role: local_roles[i + local_players.length],
+        role_id: local_roles[i + local_players.length],
+        role_name: getApp().globalData.array[local_roles[i + local_players.length]].name,
         showRole: false,
         color: 'red'
       })
