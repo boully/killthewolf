@@ -37,18 +37,18 @@ var roleTable = map[string]Role {
 
 
 type Room struct {
-	Id int
-	Size int  // max(Size) == Capacity - SavedSize
-	SavedSize int
-	Capacity int
-	Roles []Role
-	Players []string
-	mutex sync.Mutex
+	Id           int
+	Size         int  // max(Size) == Capacity - ReservedSize
+	ReservedSize int
+	Capacity     int
+	Roles        []Role
+	Players      []string
+	mutex        sync.Mutex
 }
 
 // id应该是全局唯一的
 func NewRoom(id int) *Room {
-	return &Room{Id:id, Size:0, SavedSize:0, Capacity:0}
+	return &Room{Id:id, Size:0, ReservedSize:0, Capacity:0}
 }
 
 // 初始化房间，参数是一个指定各个角色个数的json字符串，外加指定保留牌的个数，比如：
@@ -64,7 +64,7 @@ func (room *Room)  Init(roleConfig string) bool {
 	var roleArray []Role
 	for key, value := range conf {
 		if key == "保留牌" {
-			room.SavedSize = value
+			room.ReservedSize = value
 			continue
 		}
 		for i := 0; i < value; i++ {
@@ -85,12 +85,25 @@ func (room *Room)  Init(roleConfig string) bool {
 func (room *Room) AdoptPlayer(playerId string) error {
 	room.mutex.Lock()
 	defer room.mutex.Unlock()
-	if room.Size == (room.Capacity - room.SavedSize){
+	if room.Size == (room.Capacity - room.ReservedSize){
 		return errors.New("room is full")
 	}
 	room.Size += 1
 	room.Players = append(room.Players, playerId)
 	return nil
+}
+
+func (room *Room) AbandonPlayer(playerId string) error {
+	room.mutex.Lock()
+	defer room.mutex.Unlock()
+	i, err := room.IndexOf(playerId)
+	if err != nil {
+		return err
+	} else {
+		// remove player
+		room.Players = append(room.Players[:i], room.Players[i+1:]...)
+		return nil
+	}
 }
 
 func (room *Room) IndexOf(playerId string) (int, error) {
@@ -143,11 +156,20 @@ func (room *Room) GetPlayerIdsByRole(role Role) []string {
 // 和保留牌换牌
 // @params i为保留牌的编号，从0开始
 func (room *Room) SwitchWithSaved(playerId string, i int) {
-	if i >= 0 && i < room.SavedSize {
+	if i >= 0 && i < room.ReservedSize {
 		j, err := room.IndexOf(playerId)
 		if err == nil {
 			k := i + room.Size
 			room.Roles[j], room.Roles[k] = room.Roles[k], room.Roles[j]
 		}
+	}
+}
+
+// 洗牌 https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
+func (room *Room) Shuffle() {
+	n := len(room.Roles) - 1
+	for i := n; i > 0; i-- {
+		j := rand.Intn(i + 1)
+		room.Roles[i], room.Roles[j] = room.Roles[j], room.Roles[i]
 	}
 }
