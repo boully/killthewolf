@@ -1,29 +1,41 @@
 package main
 
 import (
-	"golang.org/x/net/websocket"
-	"fmt"
 	"net/http"
+	"github.com/gorilla/websocket"
+	"log"
 )
 
-func Echo(ws *websocket.Conn) {
-	var err error
+var upgrader = websocket.Upgrader{
+	CheckOrigin: func(r *http.Request) bool {
+		return true
+	},
+} // use default options
 
+func Init(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		log.Println("parse from failed:", err)
+		return
+	}
+	user_id := r.Form.Get("user_id")
+	log.Println("user_id:", user_id)
+	c, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Print("upgrade:", err)
+		return
+	}
+	defer c.Close()
 	for {
-		var reply string
-
-		if err = websocket.Message.Receive(ws, &reply); err != nil {
-			fmt.Println("Can't receive")
+		mt, message, err := c.ReadMessage()
+		if err != nil {
+			log.Println("read:", err)
 			break
 		}
-
-		fmt.Println("Received back from client: " + reply)
-
-		msg := "Received:  " + reply
-		fmt.Println("Sending to client: " + msg)
-
-		if err = websocket.Message.Send(ws, msg); err != nil {
-			fmt.Println("Can't send")
+		log.Printf("recv: %s", message)
+		err = c.WriteMessage(mt, message)
+		if err != nil {
+			log.Println("write:", err)
 			break
 		}
 	}
@@ -33,8 +45,7 @@ func Echo(ws *websocket.Conn) {
  in litter program use insecurity https client to visit server for now.
  */
 func main() {
-	http.Handle("/", websocket.Handler(Echo))
-	// test: http://www.blue-zero.com/WebSocket/
+	http.HandleFunc("/", Init)
 	if err := http.ListenAndServe(":8089", nil); err != nil {
 		panic("ListenAndServe Error: " + err.Error())
 	}
