@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/game/game",        
     "pages/role/role",        
     "pages/player/player",        
-    "pages/game/game",
     "pages/index/index",
     "pages/logs/logs"
   ],
